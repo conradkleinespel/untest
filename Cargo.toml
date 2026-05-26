@@ -1,0 +1,12 @@
+[package]
+name = "untest"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+
+[dependencies]
+syn = { version = "2.0", features = ["full", "visit-mut", "printing"] }
+quote = "1.0"
+proc-macro2 = { version = "1.0", features = ["span-locations"] }
+walkdir = "2.4"
+clap = { version = "4.4", features = ["derive"] }
