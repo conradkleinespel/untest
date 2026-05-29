@@ -177,11 +177,6 @@ fn apply_line_removals(content: &str, lines_to_remove: &[(usize, usize)]) -> Str
         result.push('\n');
     }
 
-    // Clean up excessive blank lines
-    while result.contains("\n\n\n\n") {
-        result = result.replace("\n\n\n\n", "\n\n");
-    }
-
     result
 }
 
@@ -290,6 +285,32 @@ fn test_something() {
 "#;
         let output = strip_test_file(input).unwrap();
         assert_eq!(output, "fn production_code() {}\n");
+    }
+
+    #[test]
+    fn test_strip_code_with_newlines_in_multiline_string() {
+        let input = r##"fn production_code() {
+    let multiline_string = r#"
+        The multiple newlines need to be preserved.
+
+
+
+
+        Yes, they need to be.
+    "#;
+    println!("{}", multiline_string);
+}
+
+#[test]
+fn test_something() {
+    assert!(true);
+}
+"##;
+        let output = strip_test_file(input).unwrap();
+        assert_eq!(
+            output,
+            "fn production_code() {\n    let multiline_string = r#\"\n        The multiple newlines need to be preserved.\n\n\n\n\n        Yes, they need to be.\n    \"#;\n    println!(\"{}\", multiline_string);\n}\n"
+        );
     }
 
     #[test]
