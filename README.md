@@ -1,4 +1,4 @@
-# Untest, strip tests out of Rust projects
+# Untest, strip tests from Rust projects
 
 Untest is a tool designed to simplify the process of removing test code from Rust projects.
 
@@ -17,6 +17,8 @@ untest strip my-project my-project-minus-tests \
   --exclude /.github/workflows/private-tests.yaml \
   --exclude /tests
 ```
+
+The `.git` directory is excluded by default, it is not copied to the output directory.
 
 ## How it works
 
