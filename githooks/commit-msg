@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
+COMMIT_MSG_FILE="$1"
+
+if [ -n "$GIT_GLOBAL_HOOKS_PATH" -a -x "$GIT_GLOBAL_HOOKS_PATH/commit-msg" ]; then
+  $GIT_GLOBAL_HOOKS_PATH/commit-msg "$COMMIT_MSG_FILE"
+fi
