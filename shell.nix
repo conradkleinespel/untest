@@ -13,4 +13,5 @@ pkgs.mkShell {
     rustup component add rust-src
     rustup target add x86_64-unknown-linux-gnu
   '';
+  GIT_COMMIT_MSG_SCOPES = "lib devenv docs misc";
 }
